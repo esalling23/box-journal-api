@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
 
 // Get ALL Boxes
 const index = function(req, res) {
-  Box.find({}, => (err, boxes) {
+  Box.find({}, (err, boxes) => {
     if (err) res.send(err)
 
     res.send(boxes)
@@ -14,7 +14,7 @@ const index = function(req, res) {
 
 // Get ONE Box
 const show = function(req, res) {
-  Box.findById(req.params.id, => (err, box) {
+  Box.findById(req.params.id, (err, box) => {
     if (err) res.send(err)
 
     res.send(box)
@@ -48,7 +48,7 @@ const update = function(req, res) {
 }
 
 // Delete Box
-const delete = function(req, res) {
+const destroy = function(req, res) {
   Box.remove({
     _id: req.params.id
   },
@@ -57,4 +57,12 @@ const delete = function(req, res) {
 
     res.send({ message: 'Box deleted'})
   })
+}
+
+module.exports = {
+  index,
+  show,
+  create,
+  update,
+  destroy
 }
