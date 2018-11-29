@@ -55,7 +55,7 @@ const destroy = function(req, res) {
   (err, box) => {
     if (err) res.send(err)
 
-    res.send({ message: 'Box deleted'})
+    res.send(box)
   })
 }
 

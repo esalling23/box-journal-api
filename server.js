@@ -7,7 +7,7 @@ const express = require('express'),
       mongoose = require('mongoose'),
       Box = require('./api/models/Box'),
       bodyParser = require('body-parser'),
-      port = process.env.PORT || 3000
+      port = process.env.PORT || 8080
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
