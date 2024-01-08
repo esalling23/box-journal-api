@@ -13,12 +13,22 @@ const express = require('express'),
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/BoxDB');
 
+// todo - add node clusters
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-const routes = require('./api/routes/boxRoutes'); //importing route
-routes(app); //register the route
+const boxRoutes = require('./api/routes/boxRoutes');
+const trackerRoutes = require('./api/routes/trackerRoutes');
+const boxTrackerRoutes = require('./api/routes/boxTrackerRoutes');
+const userRoutes = require('./api/routes/userRoutes')
+
+boxRoutes(app)
+trackerRoutes(app)
+boxTrackerRoutes(app)
+
+app.use(userRoutes)
 
 app.listen(port)
 
