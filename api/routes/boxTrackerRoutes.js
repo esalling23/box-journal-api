@@ -1,15 +1,22 @@
 'use strict'
+const express = require('express')
+const router = express.Router()
 
-module.exports = function(app) {
-  const controller = require('../controllers/boxTrackerController')
+const {
+	index,
+	create,
+	show,
+	update,
+	destroy
+} = require('../controllers/boxTrackerController')
 
-  app.route('/boxTrackers')
-    .get(controller.index)
-    .post(controller.create)
+router.route('/boxTrackers')
+	.get(index)
+	.post(create)
 
-  app.route('/boxTrackers/:id')
-    .get(controller.show)
-    .put(controller.update)
-    .delete(controller.destroy)
+router.route('/boxTrackers/:id')
+	.get(show)
+	.put(update)
+	.delete(destroy)
 
-}
+module.exports = router

@@ -12,17 +12,21 @@ const TrackerTypes = {
 // A Tracker is a thing to track for each day
 const TrackerSchema = new Schema({
   name: {
-    type: String
+    type: String,
+		required: true
   },
 	type: {
 		type: String,
     default: TrackerTypes[0],
+		validate: val => {
+			return Object.values(TrackerTypes).includes(val)
+		},
 		required: true
   },
 	// Should be a single icon for "Counter" type, or multiple icons for "Tracker" type
 	icons: {
 		type: String,
-		required: true
+		default: ''
 	},
   isTemplate: {
 		type: Boolean,

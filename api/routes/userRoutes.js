@@ -24,6 +24,8 @@ router.post('/sign-in', signIn)
 // PATCH /change-password
 router.patch('/change-password', requireToken, changePassword)
 
+// SIGN OUT
+// DELETE /sign-out
 router.delete('/sign-out', requireToken, signOut)
 
 module.exports = router

@@ -1,23 +1,32 @@
 'use strict'
+const express = require('express')
+const router = express.Router()
 
-module.exports = function(app) {
-  const controller = require('../controllers/boxController')
+const {
+	index,
+	create,
+	show,
+	update,
+	destroy,
+	indexHistory,
+	showToday,
+	showByDate
+} = require('../controllers/boxController')
 
-  app.route('/boxes')
-    .get(controller.index)
-    .post(controller.create)
+router.route('/boxes')
+	.get(index)
+	.post(create)
 
-  app.route('/boxes/:id')
-    .get(controller.show)
-    .put(controller.update)
-    .delete(controller.destroy)
+router.route('/boxes/:id')
+	.get(show)
+	.put(update)
+	.delete(destroy)
 
-	app.route('/boxes-history')
-		.get(controller.indexHistory)
+router.route('/boxes-history')
+	.get(indexHistory)
 
-	app.route('/boxes-history/today')
-		.get(controller.showToday)
+router.get('/boxes-history/today', showToday)
 
-	app.route('/boxes-history/date/:date')
-		.get(controller.showByDate)
-}
+router.get('/boxes-history/date/:date', showByDate)
+
+module.exports = router
